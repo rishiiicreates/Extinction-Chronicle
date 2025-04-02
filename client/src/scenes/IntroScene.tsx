@@ -31,11 +31,17 @@ const IntroScene = ({ onBeginClick }: IntroSceneProps) => {
         </motion.div>
         
         <motion.h1 
-          className="font-display text-4xl md:text-6xl lg:text-7xl mb-6 tracking-wide"
+          className="font-display text-4xl md:text-6xl lg:text-7xl mb-6 tracking-wide inline-block"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          style={{ color: "#2D3047", textShadow: "2px 2px 0px #ffffff" }}
+          style={{ 
+            color: "#2D3047", 
+            backgroundColor: "white", 
+            padding: "0.5rem 1.5rem",
+            borderRadius: "0.5rem",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
+          }}
         >
           EXTINCTION CHRONICLE
         </motion.h1>
@@ -46,8 +52,14 @@ const IntroScene = ({ onBeginClick }: IntroSceneProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <p className="text-xl md:text-2xl mb-8 font-handwritten" 
-             style={{ color: "#4C3F91", textShadow: "1px 1px 0px #ffffff" }}>
+          <p className="text-xl md:text-2xl mb-8 font-handwritten inline-block" 
+             style={{ 
+               color: "#4C3F91", 
+               backgroundColor: "white",
+               padding: "0.3rem 1rem",
+               borderRadius: "0.5rem",
+               boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)"
+             }}>
             A journey through endangered species and vanishing habitats
           </p>
         </motion.div>
@@ -75,7 +87,14 @@ const IntroScene = ({ onBeginClick }: IntroSceneProps) => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <p style={{ color: "#554971", textShadow: "1px 1px 0px #ffffff", fontWeight: "500" }}>
+          <p className="inline-block" style={{ 
+            color: "#554971", 
+            fontWeight: "500",
+            backgroundColor: "white",
+            padding: "0.3rem 1rem",
+            borderRadius: "0.5rem",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)"
+          }}>
             Scroll to explore the stories of our planet's endangered species
           </p>
         </motion.div>

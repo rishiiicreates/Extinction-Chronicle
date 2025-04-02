@@ -71,9 +71,12 @@ const NarrativeBox = ({ title, children, className = "", align = "left" }: Narra
       variants={variants}
       initial="hidden"
       animate={controls}
-      className={`relative backdrop-blur-sm p-6 max-w-xl ${alignmentClasses} ${className}`}
+      className={`relative p-6 max-w-xl ${alignmentClasses} ${className}`}
       style={{ 
-        textShadow: "1px 1px 0px rgba(255, 255, 255, 0.9)",
+        backgroundColor: "white",
+        borderRadius: "0.75rem",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        border: "1px solid rgba(0, 0, 0, 0.05)"
       }}
     >
       {/* Decorative doodle element */}
