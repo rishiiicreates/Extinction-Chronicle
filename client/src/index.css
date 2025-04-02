@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  /* Custom scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Font imports */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&family=Caveat:wght@400;700&display=swap');
+}
+
+@layer components {
+  .scene {
+    @apply min-h-screen relative overflow-hidden;
+  }
+
+  .paper-texture {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.15' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+
+  .fade-in {
+    @apply opacity-0 transform translate-y-5 transition-all duration-700 ease-out;
+  }
+  
+  .fade-in.visible {
+    @apply opacity-100 transform translate-y-0;
+  }
+
+  .stagger-delay-1 {
+    transition-delay: 0.2s;
+  }
+  
+  .stagger-delay-2 {
+    transition-delay: 0.4s;
+  }
+  
+  .stagger-delay-3 {
+    transition-delay: 0.6s;
+  }
+
+  /* Custom scene backgrounds */
+  .bg-intro-scene {
+    @apply bg-gradient-to-b from-secondary to-primary;
+  }
+  
+  .bg-crystal-scene {
+    @apply bg-gradient-to-b from-primary to-[#8BA3B4];
+  }
+  
+  .bg-birds-scene {
+    @apply bg-[#2B4162];
+  }
+  
+  .bg-island-scene {
+    @apply bg-gradient-to-b from-accent to-primary;
+  }
+  
+  .bg-desert-scene {
+    @apply bg-gradient-to-b from-[#F4D6CC] to-[#E9C4B4];
+  }
+  
+  .bg-outro-scene {
+    @apply bg-muted;
+  }
+
+  /* Status badges */
+  .status-badge {
+    @apply absolute top-4 right-4 py-1 px-3 rounded-full text-xs font-medium text-white;
+  }
+
+  .status-badge.endangered {
+    @apply bg-[#E53E3E];
+  }
+
+  .status-badge.vulnerable {
+    @apply bg-[#ED8936];
+  }
+
+  .status-badge.conservation {
+    @apply bg-[#48BB78];
+  }
+
+  /* Typography */
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-body {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .font-handwritten {
+    font-family: 'Caveat', cursive;
+  }
+
+  /* Animal card */
+  .animal-card {
+    @apply bg-white rounded-lg overflow-hidden shadow-lg transition-all duration-300;
+  }
+
+  .animal-card:hover {
+    @apply transform -translate-y-1 shadow-xl;
+  }
+}
