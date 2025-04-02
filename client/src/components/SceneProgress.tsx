@@ -10,10 +10,11 @@ interface SceneProgressProps {
 const SceneProgress = ({ progress, activeScene, onSceneClick }: SceneProgressProps) => {
   const scenes = [
     { name: "Intro", position: 0 },
-    { name: "Crystalline Guardians", position: 20 },
-    { name: "Sky Messengers", position: 40 },
-    { name: "Island Sanctuaries", position: 60 },
-    { name: "Arid Realms", position: 80 },
+    { name: "Crystalline Guardians", position: 16.7 },
+    { name: "Sky Messengers", position: 33.4 },
+    { name: "Island Sanctuaries", position: 50 },
+    { name: "Extinction Timeline", position: 66.7 },
+    { name: "Arid Realms", position: 83.4 },
     { name: "Join Us", position: 100 }
   ];
 

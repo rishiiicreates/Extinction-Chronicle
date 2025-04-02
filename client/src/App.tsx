@@ -12,6 +12,7 @@ import CrystalScene from "@/scenes/CrystalScene";
 import BirdsScene from "@/scenes/BirdsScene";
 import IslandScene from "@/scenes/IslandScene";
 import DesertScene from "@/scenes/DesertScene";
+import TimelineScene from "@/scenes/TimelineScene";
 import OutroScene from "@/scenes/OutroScene";
 
 // Hook for handling scroll
@@ -61,6 +62,7 @@ function ExtinctionChronicle() {
         <CrystalScene />
         <BirdsScene />
         <IslandScene />
+        <TimelineScene />
         <DesertScene />
         <OutroScene />
       </main>
