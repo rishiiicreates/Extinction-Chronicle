@@ -60,12 +60,12 @@ const NarrativeBox = ({ title, children, className = "", align = "left" }: Narra
       variants={variants}
       initial="hidden"
       animate={controls}
-      className={`bg-neutral bg-opacity-85 backdrop-blur-sm rounded-lg shadow-md p-6 max-w-xl ${alignmentClasses} ${className}`}
+      className={`bg-[#F8F7F3] bg-opacity-90 backdrop-blur-sm rounded-lg border border-[#00000015] shadow-sm p-6 max-w-xl relative ${alignmentClasses} ${className}`}
     >
       {title && (
-        <h2 className="font-display text-2xl mb-4">{title}</h2>
+        <h2 className="font-display text-2xl font-medium mb-4 text-[#3D5A80]">{title}</h2>
       )}
-      <div className="prose prose-sm">
+      <div className="prose prose-sm font-body text-slate-700 leading-relaxed">
         {children}
       </div>
     </motion.div>
