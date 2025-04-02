@@ -3,12 +3,27 @@ import { motion } from "framer-motion";
 import NarrativeBox from "@/components/NarrativeBox";
 import AnimalCard from "@/components/AnimalCard";
 import { animals } from "@/data/animals";
-import { IllustratedCrystals } from "@/lib/illustrations";
+import { Crystal, IllustratedCrystals } from "@/lib/illustrations";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 const CrystalScene = () => {
   const [selectedAnimal, setSelectedAnimal] = useState<typeof animals[0] | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  
+  // Generate random positions for floating crystals
+  const [floatingCrystals] = useState(Array.from({ length: 8 }, () => ({
+    left: `${Math.random() * 90}%`,
+    top: `${Math.random() * 70}%`,
+    size: `${Math.random() * 0.6 + 0.2}`,
+    rotation: `${Math.random() * 20 - 10}deg`,
+    delay: `${Math.random() * 2}s`,
+    color: [
+      "#B8C4D9", 
+      "#8ECFD6", 
+      "#A5C4D4", 
+      "#9DB4D0"
+    ][Math.floor(Math.random() * 4)]
+  })));
 
   const handleAnimalClick = (animal: typeof animals[0]) => {
     setSelectedAnimal(animal);
@@ -21,14 +36,32 @@ const CrystalScene = () => {
         <IllustratedCrystals className="w-full h-full object-cover opacity-70" />
       </div>
       
+      {/* Floating crystals animation */}
+      {floatingCrystals.map((crystal, index) => (
+        <div 
+          key={`crystal-${index}`}
+          className="floating-crystal absolute z-10"
+          style={{
+            left: crystal.left,
+            top: crystal.top,
+            transform: `scale(${crystal.size}) rotate(${crystal.rotation})`,
+            animationDelay: crystal.delay
+          }}
+        >
+          <div className="crystal-glow">
+            <Crystal color={crystal.color} />
+          </div>
+        </div>
+      ))}
+      
       <div className="container mx-auto px-4 pb-16 relative">
-        <NarrativeBox title="The Crystalline Guardians" className="mb-6 relative z-10">
+        <NarrativeBox title="The Crystalline Guardians" className="mb-6 relative z-20">
           <p className="mb-4">Let us hear one last time the sweet melody of the waterfalls, the whisper of leaves and the ancient words of the rocks.</p>
-          <p className="text-[#E53E3E] font-medium">Over 1 million species are currently threatened with extinction, many within decades.</p>
+          <p className="text-[#E53E3E] font-medium bg-white bg-opacity-60 p-2 rounded-md inline-block">Over 1 million species are currently threatened with extinction, many within decades.</p>
         </NarrativeBox>
         
         {/* Species Highlight */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 relative z-20">
           {animals.slice(0, 3).map((animal, index) => (
             <AnimalCard
               key={animal.id}

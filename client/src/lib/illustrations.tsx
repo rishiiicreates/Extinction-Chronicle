@@ -1,5 +1,42 @@
 import { SVGProps } from "react";
 
+// Flying birds component for animation
+export const FlyingBirds = (props: SVGProps<SVGSVGElement>) => {
+  return (
+    <svg width="100" height="50" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path d="M50 25C50 25 40 20 30 25C20 30 25 35 25 35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M50 25C50 25 40 30 30 35C20 40 25 45 25 45" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M50 25L70 25" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+      <path d="M70 25C70 25 80 20 90 25C100 30 95 35 95 35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M70 25C70 25 80 30 90 35C100 40 95 45 95 45" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <ellipse cx="60" cy="25" rx="12" ry="5" fill="currentColor" />
+    </svg>
+  );
+};
+
+// Crystal component for animation
+export const Crystal = (props: SVGProps<SVGSVGElement> & { color?: string }) => {
+  const { color = "#a5c4d4", ...rest } = props;
+  
+  return (
+    <svg width="60" height="120" viewBox="0 0 60 120" fill="none" xmlns="http://www.w3.org/2000/svg" {...rest}>
+      <path d="M30 0L10 40L30 120L50 40L30 0Z" fill={color} fillOpacity="0.8" />
+      <path d="M30 0L30 120" stroke="white" strokeWidth="1" strokeOpacity="0.5" />
+      <path d="M10 40L50 40" stroke="white" strokeWidth="1" strokeOpacity="0.5" />
+      <ellipse cx="30" cy="120" rx="20" ry="5" fill="white" fillOpacity="0.3" />
+    </svg>
+  );
+};
+
+// Raindrop animation component
+export const RainDrop = (props: SVGProps<SVGSVGElement>) => {
+  return (
+    <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path d="M2 0L4 10L2 20L0 10L2 0Z" fill="white" fillOpacity="0.4" />
+    </svg>
+  );
+};
+
 // SVG Illustrations for each scene
 export const IllustratedLandscape = (props: SVGProps<SVGSVGElement>) => {
   return (
