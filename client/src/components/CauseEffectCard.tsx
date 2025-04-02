@@ -11,7 +11,7 @@ interface CauseEffectCardProps {
 const CauseEffectCard = ({ icon: Icon, title, description, delay = 0 }: CauseEffectCardProps) => {
   return (
     <motion.div
-      className="bg-white rounded-lg p-5 shadow-lg"
+      className="bg-white bg-opacity-95 backdrop-blur-sm rounded-lg p-5 shadow-lg border border-white border-opacity-20"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -20,8 +20,8 @@ const CauseEffectCard = ({ icon: Icon, title, description, delay = 0 }: CauseEff
       <div className="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-4 mx-auto">
         <Icon className="text-2xl text-[#E53E3E]" />
       </div>
-      <h3 className="font-display text-center text-lg mb-2">{title}</h3>
-      <p className="text-sm text-center text-gray-600">{description}</p>
+      <h3 className="font-display text-center text-lg mb-2 text-dark font-medium">{title}</h3>
+      <p className="text-sm text-center text-dark font-medium">{description}</p>
     </motion.div>
   );
 };

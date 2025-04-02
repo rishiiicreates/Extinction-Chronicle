@@ -220,6 +220,41 @@
   .font-handwritten {
     font-family: 'Caveat', cursive;
   }
+  
+  /* Text visibility improvements */
+  .text-on-image {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+  }
+  
+  .title-text {
+    color: #333;
+    font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Peek animation for elements */
+  .peek-animation {
+    animation: peek 6s ease-in-out infinite;
+    transform-origin: center bottom;
+  }
+  
+  @keyframes peek {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
 
   /* Animal card */
   .animal-card {
