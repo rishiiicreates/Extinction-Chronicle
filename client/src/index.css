@@ -654,4 +654,25 @@
       transform: translateY(0);
     }
   }
+  
+  /* Gentle floating animation for particles */
+  @keyframes float {
+    0% {
+      transform: translate(0, 0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-10px, -20px);
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(10px, -40px);
+      opacity: 0;
+    }
+  }
 }

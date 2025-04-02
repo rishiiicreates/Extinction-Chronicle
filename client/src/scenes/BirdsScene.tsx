@@ -23,16 +23,15 @@ const BirdsScene = () => {
     peekDistance: Math.random() * 30 + 20 // Distance for peek animation
   })));
   
-  // Generate starlight streaks
-  const [starlights] = useState(Array.from({ length: 120 }, () => ({
+  // Generate gentle floating particles
+  const [gentleParticles] = useState(Array.from({ length: 40 }, () => ({
     left: `${Math.random() * 100}%`,
     top: `${Math.random() * 100}%`,
-    duration: `${Math.random() * 5 + 3}s`,
+    duration: `${Math.random() * 8 + 10}s`,
     delay: `${Math.random() * 5}s`,
-    opacity: Math.random() * 0.7 + 0.3,
-    width: Math.random() > 0.8 ? "3px" : "1px",
-    height: `${Math.random() * 30 + 20}px`,
-    angle: Math.random() * 360 // Random angle for the streak
+    opacity: Math.random() * 0.3 + 0.1, // More subtle opacity
+    size: Math.random() * 6 + 3,  // Particle size
+    blurAmount: Math.random() * 5 + 2, // Blur effect for softness
   })));
 
   // Reference for the scene element
@@ -96,21 +95,21 @@ const BirdsScene = () => {
         </div>
       ))}
       
-      {/* Starlight effect animation */}
-      <div className="starlight-animation absolute inset-0 z-0">
-        {starlights.map((light, index) => (
+      {/* Gentle floating particles animation */}
+      <div className="floating-particles absolute inset-0 z-1">
+        {gentleParticles.map((particle, index) => (
           <div
-            key={`starlight-${index}`}
-            className="starlight absolute"
+            key={`particle-${index}`}
+            className="particle absolute rounded-full"
             style={{
-              left: light.left,
-              top: light.top,
-              opacity: light.opacity,
-              width: light.width,
-              height: light.height,
-              transform: `rotate(${light.angle}deg)`,
-              backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0))',
-              animation: `twinkle ${light.duration} ease-in-out infinite ${light.delay}`,
+              left: particle.left,
+              top: particle.top,
+              opacity: particle.opacity,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              backgroundColor: 'white',
+              filter: `blur(${particle.blurAmount}px)`,
+              animation: `float ${particle.duration} ease-in-out infinite ${particle.delay}`,
             }}
           />
         ))}

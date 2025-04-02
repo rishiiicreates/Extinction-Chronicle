@@ -187,24 +187,39 @@ export const IllustratedCrystals = (props: SVGProps<SVGSVGElement>) => {
 export const IllustratedBirds = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <rect width="800" height="600" fill="#2B4162" />
+      {/* Gradient background instead of solid color */}
+      <defs>
+        <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#1A365D" />
+          <stop offset="100%" stopColor="#3F5C88" />
+        </linearGradient>
+        <radialGradient id="moonGlow" cx="700" cy="100" r="100" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="rgba(255,255,255,0.3)" />
+          <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+        </radialGradient>
+      </defs>
       
-      {/* Stars/Light streaks */}
-      {Array(100).fill(0).map((_, i) => (
+      <rect width="800" height="600" fill="url(#skyGradient)" />
+      
+      {/* Soft cloud-like shapes */}
+      <path d="M0 500 Q200 450 400 500 T800 470" fill="#2B4162" fillOpacity="0.2" />
+      <path d="M0 550 Q300 500 500 530 T800 510" fill="#2B4162" fillOpacity="0.3" />
+      
+      {/* Stars - smaller, more subtle */}
+      {Array(50).fill(0).map((_, i) => (
         <g key={i}>
-          <line 
-            x1={Math.random() * 800} 
-            y1={Math.random() * 600} 
-            x2={Math.random() * 800} 
-            y2={Math.random() * 600} 
-            stroke="white" 
-            strokeOpacity={Math.random() * 0.5 + 0.1} 
-            strokeWidth={Math.random() * 2 + 0.5} 
+          <circle 
+            cx={Math.random() * 800}
+            cy={Math.random() * 400}
+            r={Math.random() * 1.5 + 0.5}
+            fill="white"
+            fillOpacity={Math.random() * 0.7 + 0.3}
           />
         </g>
       ))}
       
-      {/* Moon */}
+      {/* Moon with glow effect */}
+      <circle cx="700" cy="100" r="90" fill="url(#moonGlow)" />
       <circle cx="700" cy="100" r="60" fill="#F0F0F0" fillOpacity="0.9" />
       <circle cx="670" cy="90" r="10" fill="#2B4162" fillOpacity="0.2" />
       <circle cx="710" cy="120" r="15" fill="#2B4162" fillOpacity="0.2" />
