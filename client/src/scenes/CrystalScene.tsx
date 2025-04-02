@@ -62,7 +62,7 @@ const CrystalScene = () => {
         
         {/* Species Highlight */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 relative z-20">
-          {animals.slice(0, 3).map((animal, index) => (
+          {animals.slice(0, 6).map((animal, index) => (
             <AnimalCard
               key={animal.id}
               name={animal.name}
@@ -71,7 +71,7 @@ const CrystalScene = () => {
               population={animal.population}
               location={animal.location}
               onClick={() => handleAnimalClick(animal)}
-              delay={index}
+              delay={index % 3}
             />
           ))}
         </div>

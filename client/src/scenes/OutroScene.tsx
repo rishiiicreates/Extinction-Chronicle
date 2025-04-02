@@ -82,14 +82,14 @@ const OutroScene = () => {
                   placeholder="Your email address"
                   className="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
                 />
-                <motion.button
-                  className="px-6 py-3 bg-[#E53E3E] text-white rounded-lg hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
+                  className="px-6 py-3 bg-[#E53E3E] text-white rounded-lg whitespace-nowrap peek-button action-button"
                   type="button"
                 >
-                  Join the Movement
-                </motion.button>
+                  <div className="button-content">
+                    Join the Movement
+                  </div>
+                </button>
               </div>
             </motion.form>
           </motion.div>

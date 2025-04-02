@@ -31,7 +31,7 @@ const IntroScene = ({ onBeginClick }: IntroSceneProps) => {
         </motion.div>
         
         <motion.h1 
-          className="font-display text-4xl md:text-6xl lg:text-7xl mb-6 tracking-wide inline-block"
+          className="font-display text-4xl md:text-6xl lg:text-7xl mb-6 tracking-wide inline-block shimmer"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -43,7 +43,7 @@ const IntroScene = ({ onBeginClick }: IntroSceneProps) => {
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
           }}
         >
-          EXTINCTION CHRONICLE
+          <span className="gradient-text">EXTINCTION CHRONICLE</span>
         </motion.h1>
         
         <motion.div 
@@ -69,16 +69,15 @@ const IntroScene = ({ onBeginClick }: IntroSceneProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <motion.button 
-            className="px-6 py-3 text-lg bg-[#FF5A5F] text-white rounded-full hover:bg-opacity-90 transition-all duration-300 shadow-md mx-auto flex items-center peek-animation"
+          <button 
+            className="px-6 py-3 text-lg bg-[#FF5A5F] text-white rounded-full shadow-md mx-auto flex items-center peek-button action-button"
             onClick={onBeginClick}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            style={{ animationDelay: "1s" }}
           >
-            <span>Begin Journey</span>
-            <ChevronDown className="ml-2 w-5 h-5" />
-          </motion.button>
+            <div className="button-content flex items-center">
+              <span>Begin Journey</span>
+              <ChevronDown className="ml-2 w-5 h-5" />
+            </div>
+          </button>
         </motion.div>
         
         <motion.div 

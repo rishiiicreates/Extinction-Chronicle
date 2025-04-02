@@ -2,11 +2,21 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import NarrativeBox from "@/components/NarrativeBox";
 import TimelineSlider from "@/components/TimelineSlider";
+import AnimalCard from "@/components/AnimalCard";
 import { timelineMarkers } from "@/data/timeline";
+import { animals } from "@/data/animals";
 import { IllustratedIsland } from "@/lib/illustrations";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 const IslandScene = () => {
   const [timelineValue, setTimelineValue] = useState(75);
+  const [selectedAnimal, setSelectedAnimal] = useState<typeof animals[0] | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  
+  const handleAnimalClick = (animal: typeof animals[0]) => {
+    setSelectedAnimal(animal);
+    setIsDialogOpen(true);
+  };
 
   return (
     <section id="island-scene" className="scene bg-island-scene flex items-end justify-center paper-texture">
@@ -60,7 +70,114 @@ const IslandScene = () => {
             </motion.div>
           </div>
         </motion.div>
+        
+        {/* Island Animals Display */}
+        <motion.div 
+          className="mt-12 relative z-10"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <h3 className="font-display text-xl mb-4 text-white bg-[#48BB78] bg-opacity-90 inline-block py-2 px-4 rounded-lg">
+            Island Endemic Species
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+            {animals.slice(6, 11).map((animal, index) => (
+              <motion.div
+                key={animal.id}
+                initial={{ 
+                  opacity: 0, 
+                  y: 50, 
+                  rotate: index % 2 === 0 ? -5 : 5 
+                }}
+                whileInView={{ 
+                  opacity: 1, 
+                  y: 0, 
+                  rotate: 0 
+                }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.15,
+                  type: "spring",
+                  stiffness: 100
+                }}
+              >
+                <AnimalCard
+                  name={animal.name}
+                  image={animal.image}
+                  status={animal.status}
+                  population={animal.population}
+                  location={animal.location}
+                  onClick={() => handleAnimalClick(animal)}
+                  delay={index % 3}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
+      
+      {/* Animal Detail Dialog */}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          {selectedAnimal && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="font-display text-xl">{selectedAnimal.name}</DialogTitle>
+                <DialogDescription>
+                  <span className="inline-block px-2 py-1 rounded-full text-xs text-white mb-2" 
+                    style={{ backgroundColor: selectedAnimal.status === "Critically Endangered" ? "#E53E3E" : selectedAnimal.status === "Endangered" ? "#ED8936" : "#48BB78" }}>
+                    {selectedAnimal.status}
+                  </span>
+                </DialogDescription>
+              </DialogHeader>
+              
+              <motion.div 
+                className="w-full h-48 bg-cover bg-center rounded-md mb-4"
+                style={{ backgroundImage: `url(${selectedAnimal.image})` }}
+                initial={{ scale: 0.9, opacity: 0.8 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              />
+              
+              <div className="space-y-3">
+                <p><strong>Population:</strong> {selectedAnimal.population}</p>
+                <p><strong>Habitat:</strong> {selectedAnimal.location}</p>
+                <p>{selectedAnimal.description}</p>
+                
+                <div className="pt-4">
+                  <h4 className="font-medium text-sm mb-2">Major Threats:</h4>
+                  <ul className="list-disc list-inside text-sm">
+                    {selectedAnimal.threats.map((threat, i) => (
+                      <motion.li 
+                        key={i}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: i * 0.1 }}
+                      >
+                        {threat}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <motion.div 
+                  className="pt-2"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                  <h4 className="font-medium text-sm mb-2">Conservation Efforts:</h4>
+                  <p className="text-sm">{selectedAnimal.conservation}</p>
+                </motion.div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

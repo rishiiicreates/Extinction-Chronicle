@@ -34,7 +34,7 @@ export const animals = [
   {
     id: 3,
     name: "Sumatran Orangutan",
-    image: "https://images.unsplash.com/photo-1580164631075-b3f1304f4051?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1544298903-35ebd535431c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     status: "Critically Endangered" as const,
     population: "Fewer than 14,000 remain",
     location: "Indonesia",
@@ -94,5 +94,149 @@ export const animals = [
       "Infrastructure development"
     ],
     conservation: "Conservation strategies include snare removal programs, establishment of protected areas, training of conservation teams, and efforts to use camera traps to better understand their distribution."
+  },
+  {
+    id: 7,
+    name: "Giant Panda",
+    image: "https://images.unsplash.com/photo-1566487097168-e91a4f38bee2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    status: "Vulnerable" as const,
+    population: "Around 1,864 in the wild",
+    location: "Central China",
+    description: "The giant panda is recognized worldwide for its distinctive black and white coat. They have a specialized diet consisting almost entirely of bamboo, requiring them to eat up to 38 kg per day.",
+    threats: [
+      "Habitat fragmentation",
+      "Limited food resources (bamboo flowering and die-off)",
+      "Low reproductive rate",
+      "Climate change affecting bamboo distribution"
+    ],
+    conservation: "Conservation successes include establishment of nature reserves, captive breeding programs, and habitat corridors connecting isolated populations. Giant pandas have been downlisted from Endangered to Vulnerable due to conservation efforts."
+  },
+  {
+    id: 8,
+    name: "California Condor",
+    image: "https://images.unsplash.com/photo-1612811323089-7dce012d0a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    status: "Critically Endangered" as const,
+    population: "Around 500 individuals (captive and wild)",
+    location: "California, Arizona, Utah, and Baja California",
+    description: "The California condor is North America's largest land bird with a wingspan of up to 3 meters. These magnificent scavengers play a vital role in their ecosystem by cleaning up carrion.",
+    threats: [
+      "Lead poisoning from ammunition in carcasses",
+      "Habitat loss",
+      "Power line collisions",
+      "Microtrash ingestion"
+    ],
+    conservation: "Conservation includes captive breeding and reintroduction programs, lead ammunition bans, power line modifications, and nest site protection. The population has increased from just 22 individuals in the 1980s."
+  },
+  {
+    id: 9,
+    name: "Cross River Gorilla",
+    image: "https://images.unsplash.com/photo-1548699371-3f92dee3e0ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    status: "Critically Endangered" as const,
+    population: "Fewer than 300 remain",
+    location: "Nigeria-Cameroon border region",
+    description: "The Cross River gorilla is the most endangered of all great apes. They differ from other gorilla subspecies in skull and tooth dimensions and have distinct behavioral and habitat preferences.",
+    threats: [
+      "Poaching",
+      "Habitat loss due to logging and agriculture",
+      "Small, fragmented population",
+      "Disease transmission from humans"
+    ],
+    conservation: "Conservation strategies include community-based protection, anti-poaching patrols, land-use planning, and genetic research to monitor population health and diversity."
+  },
+  {
+    id: 10,
+    name: "Philippine Eagle",
+    image: "https://images.unsplash.com/photo-1557119275-e7d71869d8fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    status: "Critically Endangered" as const,
+    population: "Less than 400 breeding pairs",
+    location: "Philippines",
+    description: "The Philippine eagle is one of the world's largest eagles, with a wingspan of over 2 meters. These powerful birds of prey are apex predators and serve as indicators of forest health and biodiversity.",
+    threats: [
+      "Deforestation",
+      "Hunting",
+      "Mining and development",
+      "Climate change affecting breeding"
+    ],
+    conservation: "Conservation includes captive breeding programs, habitat protection, community education, and strengthening legal protections. The Philippine Eagle Center plays a key role in conservation efforts."
+  },
+  {
+    id: 11,
+    name: "Snow Leopard",
+    image: "https://images.unsplash.com/photo-1456926631375-92c8ce872def?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    status: "Vulnerable" as const,
+    population: "4,000-6,500 in the wild",
+    location: "Central and South Asia mountain ranges",
+    description: "Snow leopards are perfectly adapted to life in the harsh, cold mountains with their thick fur, wide paws, and long tails that help with balance. Their pale gray color provides excellent camouflage against rocky slopes.",
+    threats: [
+      "Poaching for fur and body parts",
+      "Retaliatory killing by farmers protecting livestock",
+      "Mining and infrastructure development",
+      "Climate change affecting mountain ecosystems"
+    ],
+    conservation: "Conservation efforts include anti-poaching initiatives, community-based livestock insurance programs, protected area management, and international cooperation across their range countries."
+  },
+  {
+    id: 12,
+    name: "Black Rhino",
+    image: "https://images.unsplash.com/photo-1557050661-8930a7f5d764?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    status: "Critically Endangered" as const,
+    population: "Around 5,600 individuals",
+    location: "Eastern and Southern Africa",
+    description: "The black rhinoceros is a browser with a pointed upper lip that helps it feed on leaves from bushes and trees. Despite its name, it's actually gray in color and distinguished from white rhinos by its smaller size and hooked upper lip.",
+    threats: [
+      "Poaching for rhino horn",
+      "Habitat loss",
+      "Political instability in range countries",
+      "Genetic bottlenecks in small populations"
+    ],
+    conservation: "Conservation includes intensive anti-poaching efforts, dehorning programs, translocation to establish new populations, community engagement, and demand reduction campaigns in consumer countries."
+  },
+  {
+    id: 13,
+    name: "Kakapo",
+    image: "https://images.unsplash.com/photo-1544979590-37e9b46f40e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    status: "Critically Endangered" as const,
+    population: "Around 200 individuals",
+    location: "New Zealand",
+    description: "The kakapo is the world's only flightless parrot and one of the longest-living birds, potentially reaching 90 years of age. They are nocturnal, with moss-green feathers that provide excellent camouflage in their forest habitat.",
+    threats: [
+      "Introduced predators (cats, rats, stoats)",
+      "Low genetic diversity",
+      "Low reproductive rate",
+      "History of habitat loss"
+    ],
+    conservation: "Conservation includes intensive management on predator-free islands, supplementary feeding, artificial incubation of eggs, and genetic management to maintain diversity in this small population."
+  },
+  {
+    id: 14,
+    name: "Tiger",
+    image: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    status: "Endangered" as const,
+    population: "Around 3,900 in the wild",
+    location: "Parts of Asia",
+    description: "The tiger is the largest cat species and a formidable apex predator. Each tiger has a unique pattern of stripes, much like human fingerprints. As keystone species, they help maintain the health of their ecosystems.",
+    threats: [
+      "Poaching for traditional medicine and trophies",
+      "Habitat loss and fragmentation",
+      "Human-wildlife conflict",
+      "Depletion of prey species"
+    ],
+    conservation: "Conservation includes anti-poaching patrols, protected area management, wildlife corridors connecting habitats, community-based conservation, and international cooperation through initiatives like the Global Tiger Recovery Program."
+  },
+  {
+    id: 15,
+    name: "North Atlantic Right Whale",
+    image: "https://images.unsplash.com/photo-1568430462989-44163eb1752f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    status: "Critically Endangered" as const,
+    population: "Fewer than 370 remain",
+    location: "North Atlantic Ocean",
+    description: "The North Atlantic right whale is one of the world's most endangered large whale species. They have distinctive callosities (rough patches of skin) on their heads, which appear white due to whale lice and allow scientists to identify individuals.",
+    threats: [
+      "Ship strikes",
+      "Entanglement in fishing gear",
+      "Ocean noise pollution",
+      "Climate change affecting feeding areas"
+    ],
+    conservation: "Conservation measures include vessel speed restrictions, fishing gear modifications, acoustic monitoring systems to track whale locations, and emergency response networks for entangled whales."
   }
 ];

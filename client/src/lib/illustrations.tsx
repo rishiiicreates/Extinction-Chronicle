@@ -1,15 +1,59 @@
 import { SVGProps } from "react";
 
-// Flying birds component for animation
+// Flying birds component for animation with peek animation style
 export const FlyingBirds = (props: SVGProps<SVGSVGElement>) => {
   return (
-    <svg width="100" height="50" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <path d="M50 25C50 25 40 20 30 25C20 30 25 35 25 35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M50 25C50 25 40 30 30 35C20 40 25 45 25 45" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M50 25L70 25" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-      <path d="M70 25C70 25 80 20 90 25C100 30 95 35 95 35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M70 25C70 25 80 30 90 35C100 40 95 45 95 45" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <ellipse cx="60" cy="25" rx="12" ry="5" fill="currentColor" />
+    <svg width="150" height="80" viewBox="0 0 150 80" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} className="bird-peek-anim">
+      {/* Main Bird Body */}
+      <path 
+        d="M70 40C90 30 110 35 120 40C125 42.5 125 45 125 45" 
+        stroke="currentColor" 
+        strokeWidth="4" 
+        strokeLinecap="round"
+        className="bird-wing-1" 
+      />
+      <path 
+        d="M70 40C90 50 110 55 120 50C125 47.5 125 45 125 45" 
+        stroke="currentColor" 
+        strokeWidth="4" 
+        strokeLinecap="round"
+        className="bird-wing-2" 
+      />
+      <ellipse cx="60" cy="40" rx="18" ry="10" fill="currentColor" className="bird-body" />
+      
+      {/* Head and Features */}
+      <circle cx="40" cy="40" r="12" fill="currentColor" className="bird-head" />
+      <circle cx="35" cy="36" r="2.5" fill="white" className="bird-eye" />
+      <path 
+        d="M30 40C25 42 20 41 20 41" 
+        stroke="currentColor" 
+        strokeWidth="3" 
+        strokeLinecap="round"
+        className="bird-beak" 
+      />
+      
+      {/* Decorative Feathers */}
+      <path 
+        d="M55 30C55 30 60 25 65 27" 
+        stroke="currentColor" 
+        strokeWidth="2" 
+        strokeLinecap="round"
+        className="bird-feather" 
+      />
+      <path 
+        d="M60 32C60 32 67 28 70 30" 
+        stroke="currentColor" 
+        strokeWidth="2" 
+        strokeLinecap="round"
+        className="bird-feather" 
+      />
+      <path 
+        d="M50 34C50 34 45 28 47 25" 
+        stroke="currentColor" 
+        strokeWidth="2" 
+        strokeLinecap="round"
+        className="bird-feather" 
+      />
     </svg>
   );
 };

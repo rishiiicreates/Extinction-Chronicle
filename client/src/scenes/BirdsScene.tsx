@@ -2,7 +2,7 @@ import { motion, useAnimation } from "framer-motion";
 import NarrativeBox from "@/components/NarrativeBox";
 import { FlyingBirds, IllustratedBirds, RainDrop } from "@/lib/illustrations";
 import { Play } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const BirdsScene = () => {
   const birdStats = [
@@ -11,60 +11,106 @@ const BirdsScene = () => {
     { value: "187", description: "bird species extinct since 1500" }
   ];
   
-  // Generate random positions for flying birds
-  const [flyingBirds] = useState(Array.from({ length: 5 }, () => ({
-    left: `${Math.random() * 60}%`,
-    top: `${Math.random() * 50}%`,
-    size: `${Math.random() * 0.6 + 0.4}`,
-    duration: `${Math.random() * 10 + 15}s`,
-    delay: `${Math.random() * 5}s`,
-    color: Math.random() > 0.5 ? "#A5C4D4" : "#ffffff"
+  // Generate birds with peek animation properties
+  const [peekBirds] = useState(Array.from({ length: 8 }, () => ({
+    left: `${Math.random() * 80}%`,
+    top: `${Math.random() * 70}%`,
+    size: Math.random() * 0.6 + 0.4,
+    rotation: Math.random() * 30 - 15, // Random rotation between -15 and 15 degrees
+    delay: Math.random() * 5,
+    duration: Math.random() * 2 + 3,
+    color: Math.random() > 0.5 ? "#A5C4D4" : "#ffffff",
+    peekDistance: Math.random() * 30 + 20 // Distance for peek animation
   })));
   
-  // Generate raindrops/light streaks
-  const [raindrops] = useState(Array.from({ length: 100 }, () => ({
+  // Generate starlight streaks
+  const [starlights] = useState(Array.from({ length: 120 }, () => ({
     left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
     duration: `${Math.random() * 5 + 3}s`,
     delay: `${Math.random() * 5}s`,
     opacity: Math.random() * 0.7 + 0.3,
     width: Math.random() > 0.8 ? "3px" : "1px",
-    height: `${Math.random() * 30 + 20}px`
+    height: `${Math.random() * 30 + 20}px`,
+    angle: Math.random() * 360 // Random angle for the streak
   })));
 
+  // Reference for the scene element
+  const sceneRef = useRef<HTMLDivElement>(null);
+  
+  // Add scroll-triggered animation for birds
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sceneRef.current) {
+        const rect = sceneRef.current.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isVisible) {
+          document.querySelectorAll('.peek-bird').forEach((bird) => {
+            bird.classList.add('active');
+          });
+        } else {
+          document.querySelectorAll('.peek-bird').forEach((bird) => {
+            bird.classList.remove('active');
+          });
+        }
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <section id="birds-scene" className="scene bg-birds-scene flex items-center justify-center paper-texture">
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+    <section 
+      ref={sceneRef}
+      id="birds-scene" 
+      className="scene bg-birds-scene flex items-center justify-center paper-texture relative overflow-hidden"
+    >
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
         <IllustratedBirds className="w-full h-full object-cover opacity-90" />
       </div>
       
-      {/* Flying birds animation */}
-      {flyingBirds.map((bird, index) => (
+      {/* Peek Birds Animation */}
+      {peekBirds.map((bird, index) => (
         <div 
-          key={`bird-${index}`}
-          className="flying-bird absolute z-10"
+          key={`peek-bird-${index}`}
+          className="absolute peek-bird z-10"
           style={{
             left: bird.left,
             top: bird.top,
-            transform: `scale(${bird.size})`,
-            animation: `fly ${bird.duration} linear infinite ${bird.delay}`
+            transform: `scale(${bird.size}) rotate(${bird.rotation}deg)`,
+            transition: `transform ${bird.duration}s ease-in-out`,
+            zIndex: 10
           }}
         >
-          <FlyingBirds style={{ color: bird.color }} />
+          <FlyingBirds 
+            style={{ 
+              color: bird.color,
+              animation: `peekAnimation ${bird.duration}s ease-in-out ${bird.delay}s infinite alternate`
+            }} 
+          />
         </div>
       ))}
       
-      {/* Rain/Light effect animation */}
-      <div className="rain-animation">
-        {raindrops.map((drop, index) => (
+      {/* Starlight effect animation */}
+      <div className="starlight-animation absolute inset-0 z-0">
+        {starlights.map((light, index) => (
           <div
-            key={`drop-${index}`}
-            className="raindrop absolute"
+            key={`starlight-${index}`}
+            className="starlight absolute"
             style={{
-              left: drop.left,
-              animation: `fall ${drop.duration} linear infinite ${drop.delay}`,
-              opacity: drop.opacity,
-              width: drop.width,
-              height: drop.height
+              left: light.left,
+              top: light.top,
+              opacity: light.opacity,
+              width: light.width,
+              height: light.height,
+              transform: `rotate(${light.angle}deg)`,
+              backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0))',
+              animation: `twinkle ${light.duration} ease-in-out infinite ${light.delay}`,
             }}
           />
         ))}
@@ -93,18 +139,14 @@ const BirdsScene = () => {
         </NarrativeBox>
         
         <div className="mt-12 flex justify-center">
-          <motion.button
-            className="px-5 py-3 bg-white bg-opacity-30 text-white rounded-full hover:bg-opacity-40 transition-all duration-300 inline-flex items-center shadow-md border border-white border-opacity-30"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <button
+            className="px-5 py-3 bg-white bg-opacity-30 text-white rounded-full inline-flex items-center shadow-md border border-white border-opacity-30 peek-button action-button"
           >
-            <Play className="mr-2 w-5 h-5" />
-            <span>Watch migration patterns</span>
-          </motion.button>
+            <div className="button-content flex items-center">
+              <Play className="mr-2 w-5 h-5" />
+              <span>Watch migration patterns</span>
+            </div>
+          </button>
         </div>
       </div>
     </section>
